@@ -5,6 +5,7 @@ Issues and PRDs for this repo live as GitHub issues. Use the `gh` CLI for all op
 ## Conventions
 
 - **Create an issue**: `gh issue create --title "..." --body "..."`. Use a heredoc for multi-line bodies.
+- **Create a sub-issue**: `gh issue create --parent <parent-number-or-url> --title "..." --body "..."`. Creates the child and attaches it to the parent's native sub-issue list in one call, so the breakdown surfaces in the parent's progress indicator instead of only being cross-linked from the body. Needs `gh` ≥ 2.95.0.
 - **Read an issue**: `gh issue view <number> --comments`, filtering comments by `jq` and also fetching labels.
 - **List issues**: `gh issue list --state open --json number,title,body,labels,comments --jq '[.[] | {number, title, body, labels: [.labels[].name], comments: [.comments[].body]}]'` with appropriate `--label` and `--state` filters.
 - **Comment on an issue**: `gh issue comment <number> --body "..."`
@@ -32,6 +33,19 @@ Create a GitHub issue.
 ## When a skill says "fetch the relevant ticket"
 
 Run `gh issue view <number> --comments`.
+
+## When a skill says "create a sub-issue"
+
+Run `gh issue create --parent <parent-number-or-url> ...`. The child then appears in the parent's sub-issue list and progress indicator, not just as a `## Parent` body cross-link.
+
+If your `gh` predates the `--parent` flag (< 2.95.0) or the target instance rejects it, create the issue normally and attach it afterwards via the sub-issues REST API, which `gh` does not expose as a porcelain command:
+
+```bash
+child_id=$(gh api repos/<owner>/<repo>/issues/<child-number> --jq .id)
+gh api -X POST repos/<owner>/<repo>/issues/<parent-number>/sub_issues -F sub_issue_id=$child_id
+```
+
+`sub_issue_id` is the child's numeric **database id** (`gh api repos/<owner>/<repo>/issues/<n> --jq .id`) — _not_ its `#number` and _not_ its `node_id`, the same id the native issue-dependency endpoint takes.
 
 ## Wayfinding operations
 

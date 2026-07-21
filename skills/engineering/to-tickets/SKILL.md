@@ -60,11 +60,19 @@ Iterate until the user approves the breakdown.
 Publish the approved tickets. **How** depends on the tracker `/setup-gn0rt0n-skills` configured — the tickets are the same either way, only the shape of the blocking edges changes:
 
 - **Local files** → write one file per ticket under `.scratch/<feature-slug>/issues/<NN>-<slug>.md`, numbered from `01` in dependency order (blockers first). Each file's "Blocked by" lists the numbers/titles it depends on. Use the per-ticket file template below — one ticket per file, never a single combined file.
-- **A real issue tracker (GitHub, Linear, …)** → publish one issue per ticket in dependency order (blockers first) so each ticket's blocking edges can reference real identifiers. Use the platform's native blocking / sub-issue relationship where it has one; otherwise set each ticket's "Blocked by" to the blocking issues. Apply the `ready-for-agent` triage label unless instructed otherwise — the tickets are agent-grabbable by construction.
+- **A real issue tracker (GitHub, Linear, …)** → publish one issue per ticket in dependency order (blockers first) so each ticket's blocking edges can reference real identifiers. Represent the blocking edges with the platform's native **dependency / blocked-by** link where it has one; otherwise set each ticket's "Blocked by" to the blocking issues. Apply the `ready-for-agent` triage label unless instructed otherwise — the tickets are agent-grabbable by construction.
+
+**Nest the slices under their parent.** Before publishing to a real tracker, decide whether the source has a parent issue the slices belong under:
+
+- If the user invoked this skill with an issue reference, that issue is the parent.
+- If the source is a spec/PRD, search the tracker for an issue whose title or body matches it; use it as the parent only if exactly one clear match exists.
+- Otherwise, publish the slices as top-level issues.
+
+When a parent is identified, create each slice as a **sub-issue** of it — following the tracker's "create a sub-issue" convention where it defines one — rather than relying on the `## Parent` body line alone. Where the tracker has no native sub-issue link, the `## Parent` body line carries the relationship on its own. The native link groups the breakdown under the parent and surfaces it in the parent's sub-issue list and progress indicator, so no one has to attach the children by hand. Do this for every slice. Keep the `## Parent` body line too: it stays useful when an agent reads the issue as plain text, where the structural link is invisible. (Sub-issue nesting is distinct from the blocking edges above — nesting is parent→child; blocking is sibling→sibling.)
 
 Work the **frontier**: any ticket whose blockers are all done. For a purely linear chain that means top to bottom.
 
-Do NOT close or modify any parent issue.
+Do NOT close or otherwise modify the parent issue's own body or state — attaching a slice as its sub-issue is the one permitted addition.
 
 <local-ticket-template>
 
@@ -85,7 +93,7 @@ Do NOT close or modify any parent issue.
 
 ## Parent
 
-A reference to the parent issue on the tracker (if the source was an existing issue, otherwise omit this section).
+A reference to the parent issue on the tracker (if this slice was created as a sub-issue, or the source was an existing issue — otherwise omit this section).
 
 ## What to build
 
