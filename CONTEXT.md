@@ -1,11 +1,15 @@
-# Matt Pocock Skills
+# gn0rt0n Skills
 
-A collection of agent skills (slash commands and behaviors) loaded by Claude Code. Skills are organized into buckets and consumed by per-repo configuration emitted by `/setup-matt-pocock-skills`.
+A personal fork of a collection of agent skills (slash commands and behaviors) loaded by Claude Code. Skills are organized into buckets and consumed by per-repo configuration emitted by `/setup-gn0rt0n-skills`.
 
 ## Language
 
+**Fork**:
+The *historical origin* of this repo — a point-in-time snapshot of [mattpocock/skills](https://github.com/mattpocock/skills), not a live relationship. There is no `upstream` remote and no ongoing sync; "fork" here never means "we can just pull from Matt." Bringing in a future upstream change is a deliberate manual cherry-pick.
+_Avoid_: upstream (implies a tracked live branch, which this is not)
+
 **Issue tracker**:
-The tool that hosts a repo's issues — GitHub Issues, Linear, a local `.scratch/` markdown convention, or similar. Skills like `to-tickets`, `to-spec`, `triage`, and `qa` read from and write to it.
+The tool that hosts a repo's issues — GitHub Issues, Linear, a local `.scratch/` markdown convention, or similar. Skills like `to-tickets`, `to-spec`, and `triage` read from and write to it.
 _Avoid_: backlog manager, backlog backend, issue host
 
 **Issue**:

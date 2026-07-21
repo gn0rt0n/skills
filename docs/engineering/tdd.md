@@ -1,14 +1,4 @@
-Quickstart:
-
-```bash
-npx skills add mattpocock/skills --skill=tdd
-```
-
-```bash
-npx skills update tdd
-```
-
-[Source](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd)
+[Source](https://github.com/gn0rt0n/skills/tree/main/skills/engineering/tdd)
 
 ## What it does
 
@@ -20,7 +10,7 @@ It will **not** write all the tests up front. Batching the tests first ("horizon
 
 Type `/tdd`, or the agent reaches for it automatically when a task fits — building a feature or fixing a bug test-first, or when you say "red-green-refactor".
 
-Reach for it when there's a concrete behaviour to build and you want tests that survive a refactor. If the behaviour isn't pinned down yet, settle the spec first — for that, use [to-spec](https://aihero.dev/skills-to-spec). When the work is really about the shape of the interface rather than the tests, use [codebase-design](https://aihero.dev/skills-codebase-design); `tdd` calls into it for the deep-module vocabulary during planning.
+Reach for it when there's a concrete behaviour to build and you want tests that survive a refactor. If the behaviour isn't pinned down yet, settle the spec first — for that, use [to-spec](./to-spec.md). When the work is really about the shape of the interface rather than the tests, use [codebase-design](./codebase-design.md); `tdd` calls into it for the deep-module vocabulary during planning.
 
 ## Red-green, one slice at a time
 
@@ -44,4 +34,4 @@ Refactoring only happens once the suite is green; never while red.
 grill-with-docs → to-spec → to-tickets → implement → code-review
 ```
 
-[implement](https://aihero.dev/skills-implement) is the chain's build step, and it drives `tdd` internally to build each ticket test-first before handing off to [code-review](https://aihero.dev/skills-code-review) — so `tdd` is the engine inside that step rather than a step of its own. You can also reach for it directly, whenever there's a concrete behaviour to build without a full spec. Its other neighbour is [codebase-design](https://aihero.dev/skills-codebase-design), which it leans on to find deep-module seams worth testing at. When you're unsure which skill or flow fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+[implement](./implement.md) is the chain's build step, and it drives `tdd` internally to build each ticket test-first before handing off to [code-review](./code-review.md) — so `tdd` is the engine inside that step rather than a step of its own. You can also reach for it directly, whenever there's a concrete behaviour to build without a full spec. Its other neighbour is [codebase-design](./codebase-design.md), which it leans on to find deep-module seams worth testing at. When you're unsure which skill or flow fits, [which-skill](./which-skill.md) routes you.
