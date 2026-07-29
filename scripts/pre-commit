@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Pre-commit hook: assert this repo's structural invariants before a commit.
+#
+# Install once per clone — `.git/hooks` is not version-controlled:
+#   ln -sf ../../scripts/pre-commit .git/hooks/pre-commit
+#
+# This does not claim `core.hooksPath`. The machine-wide hook that owns it
+# delegates to `.git/hooks/pre-commit`, so installing here runs the checker
+# *after* whatever guards that hook applies, instead of displacing them.
+#
+# What blocks a commit is the checker's decision, not this script's: it exits
+# non-zero on a structural violation and zero when only staleness warnings
+# remain. Warnings still print. A gate that blocked on staleness would block a
+# one-word typo fix, and a gate you learn to bypass is worse than no gate.
+#
+# Two deliberate approximations, both taken because the alternative costs more
+# than the signal is worth:
+#
+#   - The checker reads the working tree, not the staged snapshot. Its
+#     invariants are whole-repo ones — every skill documented, every link
+#     resolving — so a repo that is only consistent once the unstaged half
+#     lands is not the thing worth green-lighting. Checking the staged
+#     snapshot instead would mean stashing mid-commit to do it.
+#   - Staleness is measured from commit history, so it describes the repo as it
+#     already stands rather than the commit being written: a skill change and
+#     the docs page it outdates are reported from the next commit onward.
+
+repo="$(git rev-parse --show-toplevel)"
+exec python3 "$repo/scripts/checker.py"
