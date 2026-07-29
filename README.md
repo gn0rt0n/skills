@@ -87,7 +87,7 @@ These split on one axis — who can invoke them. **User-invoked** skills are rea
 
 **User-invoked**
 
-- **[which-skill](./skills/engineering/which-skill/SKILL.md)** — Ask which skill or flow fits your situation. A router over the user-invoked skills in this repo.
+- **[which-skill](./skills/engineering/which-skill/SKILL.md)** — Ask which skill or flow fits your situation. A router over every skill this repo documents — model-invoked as well as user-invoked.
 - **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** — Grilling session that also builds your project's domain model, sharpening terminology and updating `CONTEXT.md` and ADRs inline.
 - **[triage](./skills/engineering/triage/SKILL.md)** — Move issues through a state machine of triage roles.
 - **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.

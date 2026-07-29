@@ -2,9 +2,9 @@
 
 ## What it does
 
-`which-skill` is the router over the skills in this repo. You describe the situation you're in; it tells you which skill or flow fits and in what order to run them.
+`which-skill` is the router over every skill this repo documents — model-invoked as well as user-invoked. You describe the situation you're in; it tells you which skill or flow fits and in what order to run them.
 
-It **does no work itself**. It doesn't grill, write a spec, or fix anything — it only orients. It exists for the **user-invoked** skills above all: nothing fires those for you, so *you* have to remember they exist, and `which-skill` is the memory you offload that to. It also points at the model-invoked skills you'd reach for by name — `/tdd`, `/diagnosing-bugs`, `/prototype`, `/code-review`, and the two vocabulary references, `/domain-modeling` and `/codebase-design`. It answers "which one, and when", then hands you off to the skill that actually does the job.
+It **does no work itself**. It doesn't grill, write a spec, or fix anything — it only orients. It exists for the **user-invoked** skills above all: nothing fires those for you, so *you* have to remember they exist, and `which-skill` is the memory you offload that to. It also points at the model-invoked skills you'd reach for by name — `/tdd`, `/diagnosing-bugs`, `/prototype`, `/code-review`, `/research`, `/resolving-merge-conflicts`, and the two vocabulary references, `/domain-modeling` and `/codebase-design`. It answers "which one, and when", then hands you off to the skill that actually does the job.
 
 ## When to reach for it
 
